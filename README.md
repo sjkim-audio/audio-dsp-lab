@@ -19,7 +19,7 @@
 | 02 | **Filtering & Noise** | [`02_Filtering.ipynb`](./notebooks/02_Audio_Filtering_and_Noise_Reduction.ipynb) | White Noise Generation, Butterworth Filter | ✅ Done |
 
 <details>
-<summary><b>📚 Learning Notes: Lab 01 & 02 (이론 및 핵심 정리)</b> - <i>Click to expand</i></summary>
+<summary><b>📚 Learning Notes: Lab 01 ~ 03 (이론 및 핵심 정리)</b> - <i>Click to expand</i></summary>
 <br>
 
 ### Lab 01. Audio Signal Visualization
@@ -47,5 +47,17 @@
 3. **Low-pass Filter (LPF)**
    - 차단 주파수(Cutoff Frequency)보다 낮은 저음은 통과시키고, 높은 고음(노이즈)은 걸러냅니다.
    - *Trade-off:* 노이즈를 많이 제거하려고 차단 주파수를 너무 낮추면, 원본 악기의 고음 배음(Harmonics)까지 깎여 소리가 뭉툭해질 수 있습니다.
+
+---
+
+### Lab 03. Feature Extraction (MFCC)
+**목표:** 음성 인식 AI의 표준 입력 데이터인 MFCC를 추출하고, 데이터 압축 효율을 확인합니다.
+
+1. **MFCC (Mel-Frequency Cepstral Coefficients)**
+   - 멜-스펙트로그램을 **DCT(이산 코사인 변환)**하여 얻은 계수입니다.
+   - **압축 효과:** 128개의 주파수 대역을 13~20개의 핵심 계수로 줄여 계산량을 대폭 감소시킵니다.
+2. **Source-Filter Theory (소스-필터 이론)**
+   - 소리는 **Source(성대의 떨림/음높이)**와 **Filter(성도의 모양/음색)**의 결합입니다.
+   - MFCC는 여기서 **Filter(입 모양)** 정보만 분리해내므로, 사람이 무슨 말을 하는지(발음) 인식하는 데 최적화되어 있습니다.
 
 </details>
