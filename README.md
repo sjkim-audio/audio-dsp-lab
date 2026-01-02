@@ -15,6 +15,6 @@
 
 | Step (단계) | Topic (주제) | Notebook (실습 파일) | Key Concepts / Description (핵심 내용) | Status (상태) |
 | :---: | :--- | :--- | :--- | :---: |
-| 01 | **Audio Visualization** | [`01_Visualization.ipynb`](./01_Audio_Signal_Visualization.ipynb) | Waveform, FFT, Mel-Spectrogram Analysis | ✅ Done |
-| 02 | **Filtering & Noise** | [`02_Filtering.ipynb`](./02_Audio_Filtering_and_Noise_Reduction.ipynb) | White Noise Generation, Butterworth Filter | ✅ Done |
+| 01 | **Audio Visualization** | [`01_Visualization.ipynb`](./notebooks/01_Audio_Signal_Visualization.ipynb) | Waveform, FFT, Mel-Spectrogram Analysis | ✅ Done |
+| 02 | **Filtering & Noise** | [`02_Filtering.ipynb`](./notebooks/02_Audio_Filtering_and_Noise_Reduction.ipynb) | White Noise Generation, Butterworth Filter | ✅ Done |
 
