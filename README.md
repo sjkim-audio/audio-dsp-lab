@@ -67,4 +67,22 @@
    - ** Anomaly Detection (이상 감지):** 기계의 모터 소리나 환경음의 패턴 변화를 감지하여 고장 여부를 진단합니다.
    - ** Voice Conversion (음성 변조):** 특정인의 MFCC(음색 지문) 특성을 다른 소리에 입혀 AI 커버 곡 등을 생성합니다.
 
+---
+
+### Lab 04. Musical Analysis (Chroma & Harmony)
+**목표:** 주파수 분석을 넘어, 음악적 구조인 음계(Pitch Class)와 화음(Chord)을 시각화합니다.
+
+1. **HPSS (Harmonic-Percussive Source Separation)**
+   - 오디오 신호를 **화성 성분(Harmonic, 멜로디/반주)**과 **타악 성분(Percussive, 리듬/어택)**으로 분리합니다.
+   - 스펙트로그램 상에서 가로줄(지속음)은 화성 성분으로, 세로줄(일시적 충격음)은 타악 성분으로 분류하는 기법입니다.
+   - 크로마 분석 전 전처리 단계로 사용하여 화음 추출의 정확도를 높입니다.
+
+2. **Chroma Feature (Chromagram)**
+   - 인간의 청각은 옥타브가 달라도 같은 계이름(C, D, E...)을 비슷하게 인지합니다.
+   - 전체 주파수 대역을 12개의 음계(Pitch Class)로 투영하여, 어떤 음(Note)이 연주되고 있는지 보여줍니다.
+   - 활용: 코드 인식(Chord Recognition), 커버 곡 탐색(Cover Song Identification).
+
+3. **Tonnetz (Tonal Centroids)**
+   - 화성학적 관계(5도권 등)를 기반으로 화음의 변화를 시각화한 공간입니다. 곡의 화성 진행 분위기를 파악하는 데 쓰입니다.
+
 </details>
