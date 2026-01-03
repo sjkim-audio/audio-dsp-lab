@@ -17,6 +17,9 @@
 | :---: | :--- | :--- | :--- | :---: |
 | 01 | **Audio Visualization** | [`01_Visualization.ipynb`](./notebooks/01_Audio_Signal_Visualization.ipynb) | Waveform, FFT, Mel-Spectrogram Analysis | ✅ Done |
 | 02 | **Filtering & Noise** | [`02_Filtering.ipynb`](./notebooks/02_Audio_Filtering_and_Noise_Reduction.ipynb) | White Noise Generation, Butterworth Filter | ✅ Done |
+| 03 | **Feature Extraction** | [`03_MFCC.ipynb`](./notebooks/03_Audio_Feature_Extraction.ipynb) | MFCC, Source-Filter Theory, Cepstrum | ✅ Done |
+| 04 | **Musical Analysis** | [`04_Chroma.ipynb`](./notebooks/04_Musical_Features_Chroma.ipynb) | HPSS, Chroma Feature, Tonnetz | ✅ Done |
+| 05 | **Audio Manipulation** | [`05_Manipulation.ipynb`](./notebooks/05_Audio_Manipulation.ipynb) | Time Stretching, Pitch Shifting, Phase Vocoder | ✅ Done |
 
 <details>
 <summary><b>📚 Learning Notes: Lab 01 ~ 05 (이론 및 핵심 정리)</b> - <i>Click to expand</i></summary>
