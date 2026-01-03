@@ -19,7 +19,7 @@
 | 02 | **Filtering & Noise** | [`02_Filtering.ipynb`](./notebooks/02_Audio_Filtering_and_Noise_Reduction.ipynb) | White Noise Generation, Butterworth Filter | ✅ Done |
 
 <details>
-<summary><b>📚 Learning Notes: Lab 01 ~ 03 (이론 및 핵심 정리)</b> - <i>Click to expand</i></summary>
+<summary><b>📚 Learning Notes: Lab 01 ~ 05 (이론 및 핵심 정리)</b> - <i>Click to expand</i></summary>
 <br>
 
 ### Lab 01. Audio Signal Visualization
@@ -84,5 +84,20 @@
 
 3. **Tonnetz (Tonal Centroids)**
    - 화성학적 관계(5도권 등)를 기반으로 화음의 변화를 시각화한 공간입니다. 곡의 화성 진행 분위기를 파악하는 데 쓰입니다.
+
+---
+
+### Lab 05. Audio Manipulation (Time Stretch & Pitch Shift)
+**목표:** 오디오 신호의 주파수 특성(Pitch)과 시간 특성(Duration)을 상호 간섭 없이 독립적으로 제어하는 신호 처리 기법을 실습합니다.
+
+1. **Time Stretching (타임 스트레칭)**
+   - **정의:** 소리의 고유한 음높이(Pitch)는 유지하면서 재생 속도만 빠르게 하거나 느리게 조절하는 기술입니다.
+   - **핵심 문제 (Chipmunk Effect):** 아날로그 방식처럼 단순히 재생 속도를 높이면 파형이 압축되어 주파수가 올라가고, 목소리가 변조되는 현상이 발생합니다.
+   - **해결 원리 (Phase Vocoder):** 신호를 STFT로 분해한 뒤, 주파수 강도(Magnitude)는 유지하고 위상(Phase) 정보를 시간 비율에 맞춰 재계산하여 합성함으로써 음정 변화 없는 속도 조절을 구현합니다.
+
+2. **Pitch Shifting (피치 쉬프팅)**
+   - **정의:** 소리의 길이(재생 시간)는 유지한 채 음높이만 올리거나 내리는 기술입니다.
+   - **원리:** 내부적으로 Time Stretching과 Resampling(재샘플링)을 결합하여 수행합니다. 주파수 축에서 에너지를 수직 이동시키는 것과 유사한 효과를 냅니다.
+   - **활용:** 오토튠(Auto-tune), 노래방의 키 조절(Key Change), 익명 인터뷰를 위한 음성 변조 등에 사용됩니다.
 
 </details>
