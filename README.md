@@ -23,7 +23,7 @@
 | 06 | **Convolution Reverb** | [`06_Reverb.ipynb`](./notebooks/06_Convolution_Reverb.ipynb) | Impulse Response, Convolution, Unity Gain Normalization | ✅ Done |
 
 <details>
-<summary><b>📚 Learning Notes: Lab 01 ~ 05 (이론 및 핵심 정리)</b> - <i>Click to expand</i></summary>
+<summary><b>📚 Learning Notes: Lab 01 ~ 06 (이론 및 핵심 정리)</b> - <i>Click to expand</i></summary>
 <br>
 
 ### Lab 01. Audio Signal Visualization
@@ -110,16 +110,16 @@
 **목표:** DSP와 딥러닝의 핵심 연산인 컨볼루션(Convolution)의 수학적 원리를 이해하고, 이를 통해 신호에 공간감(Reverb)을 합성합니다.
 
 1. **Impulse Response (IR, 임펄스 응답)**
-   - **정의:** 공간에 아주 짧은 소리(Impulse, 박수나 총소리)를 냈을 때, 그 공간이 반응하여 들려주는 잔향의 소리입니다.
-   - **의미:** 공간의 음향적 지문(Fingerprint) 역할을 합니다. 실습에서는 백색 소음(White Noise)과 감쇠 곡선(Decay)을 결합해 가상의 콘서트홀 IR을 직접 생성하여 사용합니다.
+   - **정의:** 시스템(공간)에 단위 충격(Impulse)이 가해졌을 때 나타나는 출력 반응입니다.
+   - **의미:** 공간의 음향적 고유 특성(System Characteristic)을 나타냅니다. 실습에서는 백색 소음(White Noise)과 감쇠 곡선(Decay)을 결합해 가상의 콘서트홀 IR을 생성하여 사용합니다.
 
 2. **Convolution (합성곱)**
-   - **수학적 정의:** 두 개의 함수(입력 신호와 IR)를 겹쳐서 적분(합)하는 연산입니다.
-   - **직관적 이해:** 입력 신호의 매 순간마다 공간의 특성(IR)을 복사해 더하는 과정입니다. 이로 인해 소리가 시간적으로 번지면서(Smearing) 풍성한 공간감이 형성됩니다. 이는 딥러닝(CNN)의 핵심 연산 원리와 동일합니다.
+   - **수학적 정의:** 두 함수(입력 신호와 IR) 중 하나를 반전 및 이동(Shift)시킨 후, 겹치는 구간을 곱하여 적분하는 연산입니다.
+   - **물리적 의미:** 과거와 현재의 입력 신호들이 IR 값에 따라 가중 합(Weighted Sum)되어 선형 중첩(Linear Superposition)되는 과정입니다. 이로 인해 소리의 시간적 정보가 공간의 특성과 결합되어 풍성한 잔향이 형성됩니다.
 
 3. **Issue & Solution: Signal Explosion (문제 해결)**
-   - **문제 발견:** 단순 합성곱 적용 시, 신호 값들이 누적(Accumulation)되어 진폭이 수십 배 증폭되고 소리가 깨지는(Clipping) 현상이 발생했습니다.
-   - **원인 분석:** 생성한 IR 데이터의 길이가 길어, 연산 과정에서 에너지 총합이 과도하게 커졌기 때문입니다.
-   - **해결 방안:** IR 신호의 에너지 총합을 1로 맞추는 **Unity Gain Normalization**을 적용하여, 공간감은 유지하되 볼륨은 원본 수준으로 안정화시켰습니다.
+   - **문제 발견:** 단순 합성곱 적용 시, 출력 신호의 진폭이 입력 대비 수십 배 이상 증폭되어 클리핑(Clipping) 현상이 발생했습니다.
+   - **원인 분석:** 컨볼루션 연산 과정에서 IR의 수만 개 샘플 크기가 누적(Accumulation)되면서, 시스템 이득(System Gain)이 1을 크게 초과했기 때문입니다.
+   - **해결 방안:** IR 계수들의 절댓값 합(L1 Norm)으로 나누어주는 **Unity Gain Normalization**을 적용하여, 시스템의 최대 이득을 1로 제한하고 신호의 안정성을 확보했습니다.
    - 
 </details>
