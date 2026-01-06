@@ -21,9 +21,10 @@
 | 04 | **Musical Analysis** | [`04_Chroma.ipynb`](./notebooks/04_Musical_Features_Chroma.ipynb) | HPSS, Chroma Feature, Tonnetz | ✅ Done |
 | 05 | **Audio Manipulation** | [`05_Manipulation.ipynb`](./notebooks/05_Audio_Manipulation.ipynb) | Time Stretching, Pitch Shifting, Phase Vocoder | ✅ Done |
 | 06 | **Convolution Reverb** | [`06_Reverb.ipynb`](./notebooks/06_Convolution_Reverb.ipynb) | Impulse Response, Convolution, Unity Gain Normalization | ✅ Done |
+| 07 | **Advanced Denoising** | ['07_Denising.ipynb'](./notebooks/07_Advanced_Denoising.ipynb) | Spectral Subtraction, Noise Profiling, STFT/ISTFT | ✅ Done |
 
 <details>
-<summary><b>📚 Learning Notes: Lab 01 ~ 06 (이론 및 핵심 정리)</b> - <i>Click to expand</i></summary>
+<summary><b>📚 Learning Notes: Lab 01 ~ 07 (이론 및 핵심 정리)</b> - <i>Click to expand</i></summary>
 <br>
 
 ### Lab 01. Audio Signal Visualization
@@ -121,5 +122,19 @@
    - **문제 발견:** 단순 합성곱 적용 시, 출력 신호의 진폭이 입력 대비 수십 배 이상 증폭되어 클리핑(Clipping) 현상이 발생했습니다.
    - **원인 분석:** 컨볼루션 연산 과정에서 IR의 수만 개 샘플 크기가 누적(Accumulation)되면서, 시스템 이득(System Gain)이 1을 크게 초과했기 때문입니다.
    - **해결 방안:** IR 계수들의 절댓값 합(L1 Norm)으로 나누어주는 **Unity Gain Normalization**을 적용하여, 시스템의 최대 이득을 1로 제한하고 신호의 안정성을 확보했습니다.
-   - 
+
+---
+
+### Lab 07. Advanced Denoising (Spectral Subtraction)
+**목표:** 신호와 노이즈가 동일한 주파수 대역을 공유할 때, 노이즈의 패턴을 통계적으로 추정하여 제거하는 스펙트럼 차감법(Spectral Subtraction)을 구현합니다.
+
+1. **Noise Profiling (노이즈 프로파일링)**
+   - **정의:** 오디오 내에서 음성 신호가 없는 '묵음 구간(Silence/Noise-only)'을 식별하여 FFT를 수행합니다.
+   - **원리:** 해당 구간의 주파수별 평균 에너지를 계산하여, 현재 환경에 깔려 있는 노이즈의 '주파수 지문(Fingerprint)'을 추출합니다.
+
+2. **Spectral Subtraction (스펙트럼 차감)**
+   - **알고리즘:** 전체 오디오 신호의 주파수 스펙트럼(Magnitude)에서 앞서 계산한 노이즈 프로파일을 수학적으로 차감(Subtraction)합니다.
+   - **핵심:** 단순한 필터(LPF)와 달리, 목소리 주파수 대역(중음역)에 섞여 있는 화이트 노이즈까지 정교하게 제거할 수 있습니다.
+   - **Phase Reconstruction:** 스펙트럼 차감은 '소리의 크기(Magnitude)'만 처리하므로, 위상(Phase) 정보는 원본(Noisy Signal)의 것을 그대로 사용하여 시간 영역 신호(Waveform)로 복원합니다.
+
 </details>
