@@ -23,9 +23,10 @@
 | 06 | **Convolution Reverb** | [`06_Reverb.ipynb`](./notebooks/06_Convolution_Reverb.ipynb) | Impulse Response, Convolution, Unity Gain Normalization | ✅ Done |
 | 07 | **Advanced Denoising** | ['07_Denising.ipynb'](./notebooks/07_Advanced_Denoising.ipynb) | Spectral Subtraction, Noise Profiling, STFT/ISTFT | ✅ Done |
 | 08 | **Data Augmentation** | [`08_Augmentation.ipynb`](./notebooks/08_Data_Augmentation.ipynb) | Noise Injection, Time Shift, SpecAugment (Masking) | ✅ Done |
+| 09 | **CNN Classification** | [`09_CNN_Model.ipynb`](./notebooks/09_Audio_Classification_CNN.ipynb) | 2D CNN Architecture, Model Summary | ✅ Done |
 
 <details>
-<summary><b>📚 Learning Notes: Lab 01 ~ 07 (이론 및 핵심 정리)</b> - <i>Click to expand</i></summary>
+<summary><b>📚 Learning Notes: Lab 01 ~ 09 (이론 및 핵심 정리)</b> - <i>Click to expand</i></summary>
 <br>
 
 ### Lab 01. Audio Signal Visualization
@@ -154,5 +155,18 @@
 4. **SpecAugment (Frequency Masking)**
    - 시간 영역이 아닌 스펙트로그램(주파수 영역) 상에서 특정 주파수 대역이나 시간 구간을 통째로 지워버리는(Masking) 최신 기법입니다.
    - 특정 주파수 정보가 유실된 상황에서도 남은 정보만으로 전체 내용을 추론하는 능력을 학습시킵니다.
+
+---
+
+### Lab 09. Audio Classification with CNN (Model Design)
+**목표:** 시계열 오디오 데이터를 이미지 처리 기술인 CNN(Convolutional Neural Network)에 적용하기 위한 차원 변환 전략과 모델 아키텍처를 설계합니다.
+
+1. **Input Representation (입력 데이터의 시각화 전략)**
+   - **Audio as Image:** 오디오의 주파수(Frequency) 축을 이미지의 높이(Height)로, 시간(Time) 축을 이미지의 너비(Width)로 매핑하여 처리합니다.
+   - **Channel Dimension:** 컬러 이미지가 RGB 3채널을 갖는 것과 달리, 스펙트로그램(MFCC)은 흑백 이미지와 유사한 단일 채널(Monophonic Channel) 구조를 갖도록 차원을 확장하여 CNN 입력 규격을 충족시킵니다.
+
+2. **CNN Architecture Design (모델 설계 원리)**
+   - **Feature Extraction (특징 추출부):** `Conv2D` 레이어를 통해 소리의 지역적 패턴(Time-Frequency Texture)을 스캔하고, `MaxPooling`으로 데이터의 차원을 축소하여 핵심 특징(Feature Map)만을 요약합니다.
+   - **Classification (분류부):** 2차원으로 추출된 특징 맵을 1차원 벡터로 변환(Flatten)한 후, 완전연결층(Dense Layer)과 `Softmax` 활성화 함수를 통해 각 클래스에 속할 확률 분포를 계산합니다.
 
 </details>
