@@ -22,7 +22,7 @@
 | 05 | **Audio Manipulation** | [`05_Manipulation.ipynb`](./notebooks/05_Audio_Manipulation.ipynb) | Time Stretching, Pitch Shifting, Phase Vocoder | ✅ Done |
 | 06 | **Convolution Reverb** | [`06_Reverb.ipynb`](./notebooks/06_Convolution_Reverb.ipynb) | Impulse Response, Convolution, Unity Gain Normalization | ✅ Done |
 | 07 | **Advanced Denoising** | ['07_Denising.ipynb'](./notebooks/07_Advanced_Denoising.ipynb) | Spectral Subtraction, Noise Profiling, STFT/ISTFT | ✅ Done |
-| 08 | **Data Augmentation** | [`08_Augmentation.ipynb`](./notebooks/08_Data_Augmentation.ipynb) | Noise Injection, Time Shift, SpecAugment (Masking) |  |
+| 08 | **Data Augmentation** | [`08_Augmentation.ipynb`](./notebooks/08_Data_Augmentation.ipynb) | Noise Injection, Time Shift, SpecAugment (Masking) | ✅ Done |
 
 <details>
 <summary><b>📚 Learning Notes: Lab 01 ~ 07 (이론 및 핵심 정리)</b> - <i>Click to expand</i></summary>
@@ -148,10 +148,10 @@
    - AI 모델이 깨끗한 환경뿐만 아니라 잡음이 섞인 환경에서도 핵심 신호를 잘 추출하도록 내성(Robustness)을 길러줍니다.
 
 2. **Time Shifting (시간 이동)**
-   - 오디오 데이터를 시간 축에서 좌우로 이동(Roll)시키는 기법입니다.
-   - 소리가 시작되는 시점이 달라져도 모델이 동일한 소리로 인식하도록 훈련하는 데 사용됩니다.
+   - 파형을 시간 축에서 이동시키되, 밀려난 끝부분이 다시 앞부분으로 연결되는 순환 이동(Circular Shift) 방식을 적용합니다.
+   - 데이터 손실 없이 소리의 시작 시점만 다양화하여, 모델이 소리의 위치가 바뀌어도 동일하게 인식하는 이동 불변성(Shift Invariance)을 학습시킵니다
 
-3. **SpecAugment (Frequency Masking)**
+4. **SpecAugment (Frequency Masking)**
    - 시간 영역이 아닌 스펙트로그램(주파수 영역) 상에서 특정 주파수 대역이나 시간 구간을 통째로 지워버리는(Masking) 최신 기법입니다.
    - 특정 주파수 정보가 유실된 상황에서도 남은 정보만으로 전체 내용을 추론하는 능력을 학습시킵니다.
 
