@@ -169,4 +169,20 @@
    - **Feature Extraction (특징 추출부):** `Conv2D` 레이어를 통해 소리의 지역적 패턴(Time-Frequency Texture)을 스캔하고, `MaxPooling`으로 데이터의 차원을 축소하여 핵심 특징(Feature Map)만을 요약합니다.
    - **Classification (분류부):** 2차원으로 추출된 특징 맵을 1차원 벡터로 변환(Flatten)한 후, 완전연결층(Dense Layer)과 `Softmax` 활성화 함수를 통해 각 클래스에 속할 확률 분포를 계산합니다.
 
+---
+
+### Lab 10. Model Evaluation & Metrics
+**목표:** 학습된 모델의 성능을 객관적인 지표로 검증하고, 시각화 도구를 통해 모델의 과적합 여부와 취약 클래스를 진단합니다.
+
+1. **Learning Curve Analysis (학습 곡선 분석)**
+   - **Training vs Validation:** Epoch 진행에 따른 Accuracy와 Loss 변화를 비교 시각화합니다.
+   - **Overfitting Detection:** Validation Loss가 다시 증가하기 시작하는 변곡점을 찾아내어 모델의 일반화 성능이 저하되는 시점을 포착합니다.
+
+2. **Confusion Matrix (오차 행렬)**
+   - 모델의 예측값과 실제 정답을 교차 비교하여 히트맵(Heatmap)으로 시각화합니다.
+   - 단순 오답률을 넘어, "어떤 클래스가 서로 혼동되는지" 오인 패턴(Misclassification Pattern)을 분석하여 추후 데이터 정제 방향을 설정합니다.
+
+3. **Quantitative Metrics (정량적 지표)**
+   - 단순 정확도(Accuracy)의 한계를 보완하기 위해 Precision(정밀도), Recall(재현율), F1-Score를 종합적으로 산출하여 모델의 신뢰성을 평가합니다.
+
 </details>
