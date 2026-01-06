@@ -24,7 +24,7 @@
 | 07 | **Advanced Denoising** | ['07_Denising.ipynb'](./notebooks/07_Advanced_Denoising.ipynb) | Spectral Subtraction, Noise Profiling, STFT/ISTFT | ✅ Done |
 | 08 | **Data Augmentation** | [`08_Augmentation.ipynb`](./notebooks/08_Data_Augmentation.ipynb) | Noise Injection, Time Shift, SpecAugment (Masking) | ✅ Done |
 | 09 | **CNN Classification** | [`09_CNN_Model.ipynb`](./notebooks/09_Audio_Classification_CNN.ipynb) | 2D CNN Architecture, Model Summary | ✅ Done |
-| 10 | **Model Evaluation** | ['10 Model Evaluation.ipynb'](./notebooks/10_Model_Evaluation.ipynb) | Confusion Matrix, Loss Curve | ✅ Done |
+| 10 | **Model Evaluation** | [`10_Model Evaluation.ipynb`](./notebooks/10_Model_Evaluation.ipynb) | Confusion Matrix, Loss Curve | ✅ Done |
 
 <details>
 <summary><b>📚 Learning Notes (이론 및 핵심 정리)</b> - <i>Click to expand</i></summary>
@@ -62,8 +62,8 @@
 **목표:** 소리의 고유한 '지문(Fingerprint)'인 MFCC를 추출하고, 오디오 분류 모델의 핵심 원리를 이해합니다.
 
 1. **MFCC (Mel-Frequency Cepstral Coefficients)**
-   - **정의:** 멜-스펙트로그램에서 소리의 높낮이(Pitch) 정보는 배제하고, **음색(Timbre)과 공명 구조(Envelope)** 정보만 남겨 압축한 데이터입니다.
-   - **효율성:** 128개 이상의 주파수 대역을 단 13~20개의 계수로 요약하여 AI 모델의 연산 효율을 극대화합니다.
+   - 멜-스펙트로그램에서 소리의 높낮이(Pitch) 정보는 배제하고, **음색(Timbre)과 공명 구조(Envelope)** 정보만 남겨 압축한 데이터입니다.
+   - 128개 이상의 주파수 대역을 단 13~20개의 계수로 요약하여 AI 모델의 연산 효율을 극대화합니다.
 2. **Source-Filter Theory (소스-필터 이론)**
    - 소리는 **Source(성대의 떨림/에너지)**와 **Filter(성도의 공명/모양)**의 결합이라는 이론입니다.
    - MFCC는 여기서 Source를 분리해내고, 고유한 Filter 특성만을 추출합니다.
@@ -93,12 +93,12 @@
 **목표:** 오디오 신호의 주파수(Pitch)와 시간(Duration) 특성을 상호 간섭 없이 독립적으로 제어합니다.
 
 1. **Time Stretching (타임 스트레칭)**
-   - **정의:** 소리의 음높이는 유지하면서 재생 속도만 빠르게 하거나 느리게 조절하는 기술입니다.
+   - 소리의 음높이는 유지하면서 재생 속도만 빠르게 하거나 느리게 조절하는 기술입니다.
    - **Phase Vocoder:** 단순히 재생 속도를 높이면 발생하는 주파수가 변형되는(Chipmunk Effect) 문제를 해결하기 위해, STFT 후 주파수 강도는 유지하고 위상(Phase) 정보만 시간 비율에 맞춰 재계산합니다.
 2. **Pitch Shifting (피치 쉬프팅)**
-   - **정의:** 소리의 길이는 유지한 채 음높이만 올리거나 내리는 기술입니다.
-   - **원리:** 내부적으로 Time Stretching과 Resampling(재샘플링)을 결합하여 구현하며, 주파수 축에서 에너지를 수직 이동시키는 효과를 냅니다.
-   - **활용:** 오토튠(Auto-tune), 키 조절(Key Change), 음성 변조 등.
+   - 소리의 길이는 유지한 채 음높이만 올리거나 내리는 기술입니다.
+   - 내부적으로 Time Stretching과 Resampling(재샘플링)을 결합하여 구현하며, 주파수 축에서 에너지를 수직 이동시키는 효과를 냅니다.
+   - 활용: 오토튠(Auto-tune), 키 조절(Key Change), 음성 변조 등.
 
 ---
 
@@ -106,7 +106,7 @@
 **목표:** DSP와 딥러닝의 핵심 연산인 컨볼루션(Convolution)의 수학적 원리를 이해하고, 이를 응용해 공간감(Reverb)을 합성합니다.
 
 1. **Impulse Response (IR, 임펄스 응답)**
-   - **정의:** 공간에 단위 충격(Impulse)이 가해졌을 때 나타나는 음향적 반응입니다. 공간의 고유한 지문 역할을 합니다.
+   - 공간에 단위 충격(Impulse)이 가해졌을 때 나타나는 음향적 반응입니다. 공간의 고유한 지문 역할을 합니다.
 2. **Convolution (합성곱)**
    - 두 함수(입력 신호와 IR) 중 하나를 반전 및 이동(Shift)시킨 후, 겹쳐서 적분하는 연산입니다.
    - 과거와 현재의 소리(입력 신호들)가 IR 값에 따라 가중 합(Weighted Sum)되어 선형 중첩(Linear Superposition)되면서 공간의 특성(IR)과 섞여(Smearing) 풍성한 잔향이 만들어집니다.
@@ -126,7 +126,8 @@
 2. **Spectral Subtraction (스펙트럼 차감)**
    - 전체 오디오 신호의 주파수 스펙트럼(Magnitude)에서 노이즈 프로파일을 수학적으로 차감(Subtraction)합니다.
    - 단순한 필터(LPF)와 달리, 목소리 주파수 대역(중음역)에 섞여 있는 화이트 노이즈까지 정교하게 제거할 수 있습니다.
-   - **Phase Reconstruction:** 스펙트럼 차감은 '소리의 크기(Magnitude)'만 처리하므로, 위상(Phase) 정보는 원본(Noisy Signal)의 것을 그대로 사용하여 시간 영역 신호(Waveform)로 복원합니다.
+3. **Phase Reconstruction:**
+   - 스펙트럼 차감은 '소리의 크기(Magnitude)'만 처리하므로, 위상(Phase) 정보는 원본(Noisy Signal)의 것을 그대로 사용하여 시간 영역 신호(Waveform)로 복원합니다.
 
 ---
 
@@ -134,13 +135,12 @@
 **목표:** 딥러닝 모델의 과적합(Overfitting)을 방지하고 일반화 성능을 높이기 위해, 원본 데이터를 인위적으로 변형하여 학습 데이터의 양을 증강시키는 기법을 실습합니다.
 
 1. **Noise Injection (노이즈 주입)**
-   - 원본 신호에 백색 소음(White Noise) 등을 임의로 섞는 기법입니다.
-   - AI 모델이 깨끗한 환경뿐만 아니라 잡음이 섞인 환경에서도 핵심 신호를 잘 추출하도록 내성(Robustness)을 길러줍니다.
+   - 원본 신호에 백색 소음 등을 임의로 섞어, AI 모델이 잡음이 있는 환경에서도 신호를 잘 추출하도록 내성(Robustness)을 기릅니다.
 2. **Time Shifting (시간 이동)**
    - **Circular Shift:** 파형을 시간 축에서 이동시키되, 잘려 나간 끝부분을 다시 앞으로 연결하는 순환 이동 방식을 사용합니다.
    - **Shift Invariance:** 소리의 시작 위치가 달라져도 모델이 동일한 소리로 인식하도록 학습시킵니다.
 3. **SpecAugment (Frequency Masking)**
-   - 시간 영역이 아닌 스펙트로그램(주파수 영역) 상에서 특정 주파수 대역이나 시간 구간을 통째로 지워버리는(Masking) 기법입니다.
+   - 시간 영역이 아닌 스펙트로그램(주파수 영역) 상에서 특정 주파수 대역이나 시간 구간을 지워버리는(Masking) 기법입니다.
    - 특정 주파수 정보가 유실된 상황에서도 남은 정보만으로 전체 내용을 추론하는 능력을 강화합니다.
 
 ---
