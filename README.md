@@ -21,7 +21,7 @@
 | 04 | **Musical Analysis** | [`04_Chroma.ipynb`](./notebooks/04_Musical_Features_Chroma.ipynb) | HPSS, Chroma Feature, Tonnetz | ✅ Done |
 | 05 | **Audio Manipulation** | [`05_Manipulation.ipynb`](./notebooks/05_Audio_Manipulation.ipynb) | Time Stretching, Pitch Shifting, Phase Vocoder | ✅ Done |
 | 06 | **Convolution Reverb** | [`06_Reverb.ipynb`](./notebooks/06_Convolution_Reverb.ipynb) | Impulse Response, Convolution, Unity Gain Normalization | ✅ Done |
-| 07 | **Advanced Denoising** | ['07_Denising.ipynb'](./notebooks/07_Advanced_Denoising.ipynb) | Spectral Subtraction, Noise Profiling, STFT/ISTFT | ✅ Done |
+| 07 | **Advanced Denoising** | ['07_Denoising.ipynb'](./notebooks/07_Advanced_Denoising.ipynb) | Spectral Subtraction, Noise Profiling, STFT/ISTFT | ✅ Done |
 | 08 | **Data Augmentation** | [`08_Augmentation.ipynb`](./notebooks/08_Data_Augmentation.ipynb) | Noise Injection, Time Shift, SpecAugment (Masking) | ✅ Done |
 | 09 | **CNN Classification** | [`09_CNN_Model.ipynb`](./notebooks/09_Audio_Classification_CNN.ipynb) | 2D CNN Architecture, Model Summary | ✅ Done |
 | 10 | **Model Evaluation** | [`10_Model Evaluation.ipynb`](./notebooks/10_Model_Evaluation.ipynb) | Confusion Matrix, Loss Curve | ✅ Done |
