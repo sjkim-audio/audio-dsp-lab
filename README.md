@@ -6,7 +6,7 @@
 
 ## Tech Stack (사용 기술)
 * **Language:** Python 3.x
-* **Main Libraries:** `Librosa`, `NumPy`, `SciPy`, `Matplotlib`
+* **Main Libraries:** `Librosa`, `NumPy`, `SciPy`, `Matplotlib`, `Seaborn`, `scikit-learn`, `Pandas`, `Requests`
 * **Environment:** Google Colab / Jupyter Notebook
 
 ---
@@ -25,6 +25,7 @@
 | 08 | **Data Augmentation** | [`08_Augmentation.ipynb`](./notebooks/08_Data_Augmentation.ipynb) | Noise Injection, Time Shift, SpecAugment (Masking) | ✅ Done |
 | 09 | **CNN Classification** | [`09_CNN_Model.ipynb`](./notebooks/09_Audio_Classification_CNN.ipynb) | 2D CNN Architecture, Model Summary | ✅ Done |
 | 10 | **Model Evaluation** | [`10_Model Evaluation.ipynb`](./notebooks/10_Model_Evaluation.ipynb) | Confusion Matrix, Loss Curve | ✅ Done |
+| 11 | **Audio Clustering** | [`11_Clustering.ipynb`](./notebooks/11_Audio_Feature_Clustering.ipynb) | Audio Features Schema, Correlation Heatmap, K-Means Clustering | ✅ Done |
 
 <details>
 <summary><b>📚 Learning Notes (이론 및 핵심 정리)</b> - <i>Click to expand</i></summary>
@@ -168,5 +169,20 @@
    - 단순 오답률을 넘어, "어떤 클래스가 서로 혼동되는지" 오인 패턴(Misclassification Pattern)을 분석하여 추후 데이터 정제 방향을 설정합니다.
 3. **Quantitative Metrics (정량적 지표)**
    - 단순 정확도(Accuracy)의 한계를 보완하기 위해 Precision(정밀도), Recall(재현율), F1-Score를 종합적으로 산출하여 모델의 신뢰성을 평가합니다.
+
+---
+
+### Lab 11. Audio Feature Clustering (Data Get – SciVis – ML Pipeline)
+**목표:** 웹상의 공개 음원 특징(Audio Features) 데이터를 수집(`Requests`)하고, 통계 시각화(`Seaborn`)로 변수 간 상관 패턴을 탐색한 뒤, 비지도 학습(`scikit-learn`)을 통해 라벨 없는 음원들의 음향 성향을 자동 군집화합니다.
+
+1. **Data Acquisition & Audio Features Schema (`Requests` & `Pandas`)**
+   - 원격 저장소의 공개 음원 데이터셋(`spotify_songs.csv`)을 HTTP `GET` 요청으로 수집하고, 음악 정보 검색(MIR)의 표준 스키마인 4가지 고수준 음향 지표를 추출합니다.
+   - **핵심 변수:** 곡의 빠르기인 `tempo`(BPM), 지각적 강도와 스펙트럼 활동성인 `energy`($0.0\sim 1.0$), 전체 평균 음압 레벨인 `loudness`(dB), 전자음 대비 어쿠스틱 음향 비중인 `acousticness`($0.0\sim 1.0$).
+2. **Exploratory Visual Analysis (`Seaborn`)**
+   - **Correlation Heatmap:** 변수 간 상관계수 행렬을 시각화하여 `energy`와 `loudness` 간의 양의 상관관계, `energy`와 `acousticness` 간의 뚜렷한 음의 상관관계를 확인합니다.
+   - **Scatter Plot & Hypothesis Setting:** 상관성이 높은 `energy`–`acousticness` 2차원 평면에 데이터를 투영하여 분포 형태를 육안으로 확인하고, 머신러닝 모델에 입력할 군집 수($K$) 가설을 설정합니다.
+3. **Unsupervised K-Means Clustering (`scikit-learn`)**
+   - **Centroid Optimization:** 정답 라벨 없이 유클리드 거리 기반으로 동작하는 K-Means 알고리즘을 통해 각 음향 성향 그룹의 중심점(`Centers`)을 반복 연산으로 탐색합니다.
+   - **Comparative Experiments & Silhouette Evaluation:** 전체 장르 혼합 데이터($K=3$, `Silhouette ≈ 0.434`)와 상반된 두 장르(`EDM` vs `R&B`) 필터링 데이터($K=2$, `Silhouette ≈ 0.521`)를 비교 실험하여, 장르 명칭과 무관하게 실제 신호의 전자음/어쿠스틱 비중에 따라 군집 경계가 형성됨을 정량적으로 검증합니다.
 
 </details>
